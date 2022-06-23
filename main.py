@@ -7,6 +7,9 @@ from backtesting.lib import crossover
 
 from backtesting.test import SMA, GOOG
 
+from dataPull import *
+
+btcData = dataPull()
 
 class SmaCross(Strategy):
     def init(self):
@@ -21,7 +24,7 @@ class SmaCross(Strategy):
             self.sell()
 
 
-bt = Backtest(GOOG, SmaCross, commission=.002,
+bt = Backtest(btcData, SmaCross, commission=.002,
               exclusive_orders=True)
 stats = bt.run()
 print(stats)
